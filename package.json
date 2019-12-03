@@ -1,0 +1,70 @@
+{
+  "name": "jose-chacha",
+  "version": "1.0.0",
+  "description": "ChaCha derived AEAD algorithms extension for the jose module",
+  "keywords": [
+    "aead_chacha20_poly1305",
+    "aead_xchacha20_poly1305",
+    "c20p",
+    "c20pkw",
+    "chacha",
+    "chacha20",
+    "ecdh-es+xc20pkw",
+    "jose",
+    "jwe",
+    "poly1305",
+    "xc20p",
+    "xc20pkw"
+  ],
+  "homepage": "https://github.com/panva/jose-chacha",
+  "repository": "panva/jose-chacha",
+  "license": "MIT",
+  "author": "Filip Skokan <panva.ip@gmail.com>",
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "scripts": {
+    "coverage": "c8 ava",
+    "lint": "standard",
+    "lint-fix": "standard --fix",
+    "test": "ava",
+    "watch": "ava --watch"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "dependencies": {
+    "libsodium-wrappers": "^0.7.6"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "ava": "^2.4.0",
+    "c8": "^6.0.1",
+    "husky": "^3.0.9",
+    "jose": "^1.16.0",
+    "standard": "^14.3.1"
+  },
+  "peerDependencies": {
+    "jose": "^1.16.0"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "ava": {
+    "babel": false,
+    "compileEnhancements": false,
+    "files": [
+      "test/**/*.test.js"
+    ]
+  },
+  "funding": "https://github.com/sponsors/panva"
+}

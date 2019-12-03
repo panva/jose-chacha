@@ -1,0 +1,67 @@
+name: Continuous Integration
+
+on:
+  push:
+    paths-ignore:
+      - '**.yml'
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.yml'
+      - '**.md'
+  schedule:
+    - cron:  0 9 * * 1-5
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npx panva/npm-install-retry
+      - run: npm run lint
+
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node-version:
+          - 12.0.0
+          - 12
+          - 13.0.0
+          - 13
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macOS-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npx panva/npm-install-retry
+      - run: npm run test
+
+  test-electron:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        electron-version:
+          - 6.0.0
+          - 6
+          - 7.0.0
+          - 7
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macOS-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm install --global xvfb-maybe electron@${{ matrix.electron-version }}
+      - run: npx panva/npm-install-retry
+      - run: xvfb-maybe electron ./test/electron
