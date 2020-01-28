@@ -11,6 +11,7 @@ test.before(async t => {
 })
 
 test('all oct key JWE functionality', t => {
+  t.plan(30)
   const key = jose.JWK.generateSync('oct', 256, { use: 'enc' })
   const key2 = jose.JWK.generateSync('oct', 256, { use: 'enc' })
 
@@ -55,6 +56,7 @@ test('all oct key JWE functionality', t => {
 
 ;['P-256', 'P-384', 'P-521'].forEach((crv) => {
   test(`all EC ${crv} key JWE functionality`, t => {
+    t.plan(6)
     const key = jose.JWK.generateSync('EC', crv, { use: 'enc' })
     const key2 = jose.JWK.generateSync('EC', crv, { use: 'enc' })
 
