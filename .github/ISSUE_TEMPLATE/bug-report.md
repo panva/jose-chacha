@@ -1,8 +1,7 @@
 ---
-name: Bug report
+name: 🐞Bug report
 about: There's a bug I want to report
-title: 'bug: '
-labels: bug
+labels: triage
 ---
 
 **Describe the bug**
@@ -28,5 +27,5 @@ A clear and concise description of what you expected to happen.
 **Additional context**
 Add any other context about the problem here.
 
- - [ ] the bug is happening on latest `jose` and `jose-chacha` too.
+ - [ ] the bug is happening on latest `jose-chacha` too.
  - [ ] i have searched the issues tracker on github for similar issues and couldn't find anything related.
