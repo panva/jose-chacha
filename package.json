@@ -1,6 +1,6 @@
 {
   "name": "jose-chacha",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "ChaCha derived AEAD algorithms extension for the jose module",
   "keywords": [
     "aead_chacha20_poly1305",

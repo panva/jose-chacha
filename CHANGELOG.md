@@ -1,6 +1,13 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [1.1.0](https://github.com/panva/jose-chacha/compare/v1.0.0...v1.1.0) (2020-09-01)
+
+
+### Features
+
+* add ECDH-ES+ for OKP X* keys ([bfefd6e](https://github.com/panva/jose-chacha/commit/bfefd6e0aff43a5981656fd9dad234ca12aeb099)), closes [#1](https://github.com/panva/jose-chacha/issues/1)
 
 # 1.0.0 (2019-12-04)
 
