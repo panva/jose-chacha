@@ -34,7 +34,7 @@ npm install jose-chacha
 const jose = require('jose')
 const chacha = require('jose-chacha')
 
-(async () => {
+;(async () => {
   await chacha // wait for libsodium to be ready!
 
   {

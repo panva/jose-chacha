@@ -1,6 +1,8 @@
 const test = require('ava')
 const crypto = require('crypto')
 
+const { diffieHellman } = require('crypto')
+
 let jose
 let errors
 
@@ -80,4 +82,39 @@ test('all oct key JWE functionality', t => {
       }, { instanceOf: errors.JWEDecryptionFailed, code: 'ERR_JWE_DECRYPTION_FAILED' })
     })
   })
+})
+
+;['X25519', 'X448'].forEach((crv) => {
+  if (diffieHellman) {
+    test(`all OKP ${crv} key JWE functionality`, t => {
+      t.plan(6)
+      const key = jose.JWK.generateSync('OKP', crv, { use: 'enc' })
+      const key2 = jose.JWK.generateSync('OKP', crv, { use: 'enc' })
+
+      key.algorithms('deriveKey').forEach((alg) => {
+        if (!alg.includes('C20P')) {
+          return
+        }
+        jose.JWE.decrypt(jose.JWE.encrypt('foo', key, { alg }), key)
+        t.throws(() => {
+          jose.JWE.decrypt(jose.JWE.encrypt('foo', key, { alg }), key2)
+        }, { instanceOf: errors.JWEDecryptionFailed, code: 'ERR_JWE_DECRYPTION_FAILED' })
+        t.throws(() => {
+          const jwe = jose.JWE.encrypt.flattened('foo', key, { alg })
+          jwe.tag = crypto.randomBytes(11).toString('hex')
+          jose.JWE.decrypt(jwe, key)
+        }, { instanceOf: errors.JWEDecryptionFailed, code: 'ERR_JWE_DECRYPTION_FAILED' })
+        t.throws(() => {
+          const jwe = jose.JWE.encrypt.flattened('foo', key, { alg })
+          jwe.iv = crypto.randomBytes(jwe.iv.length / 2).toString('hex')
+          jose.JWE.decrypt(jwe, key)
+        }, { instanceOf: errors.JWEDecryptionFailed, code: 'ERR_JWE_DECRYPTION_FAILED' })
+      })
+    })
+  } else {
+    test(`OKP ${crv} not supported in this Node.js runtime`, t => {
+      const key = jose.JWK.generateSync('OKP', crv, { use: 'enc' })
+      t.deepEqual(key.algorithms('deriveKey'), new Set())
+    })
+  }
 })
