@@ -66,5 +66,7 @@
       "test/**/*.test.js"
     ]
   },
-  "funding": "https://github.com/sponsors/panva"
+  "funding": {
+    "url": "https://github.com/sponsors/panva"
+  }
 }
