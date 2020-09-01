@@ -85,7 +85,7 @@ test('all oct key JWE functionality', t => {
 })
 
 ;['X25519', 'X448'].forEach((crv) => {
-  if (diffieHellman) {
+  if (diffieHellman && !('electron' in process.versions)) {
     test(`all OKP ${crv} key JWE functionality`, t => {
       t.plan(6)
       const key = jose.JWK.generateSync('OKP', crv, { use: 'enc' })
@@ -111,7 +111,7 @@ test('all oct key JWE functionality', t => {
         }, { instanceOf: errors.JWEDecryptionFailed, code: 'ERR_JWE_DECRYPTION_FAILED' })
       })
     })
-  } else {
+  } else if (!('electron' in process.versions)) {
     test(`OKP ${crv} not supported in this Node.js runtime`, t => {
       const key = jose.JWK.generateSync('OKP', crv, { use: 'enc' })
       t.deepEqual(key.algorithms('deriveKey'), new Set())

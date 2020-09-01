@@ -26,7 +26,7 @@ this cipher is handled via libsodium.
 Installing
 
 ```console
-npm install jose // jose ^1.16.0 declared as a peer dependency
+npm install jose // jose ^1.16.0 || ^2.0.1 declared as a peer dependency
 npm install jose-chacha
 ```
 

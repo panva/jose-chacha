@@ -30,21 +30,24 @@ jobs:
         node-version:
           - 12.0.0
           - 12
-          - 13.0.0
+          - 13.7.0
           - 13
           - 14.0.0
           - 14
         os:
           - ubuntu-latest
           - windows-latest
-          - macOS-latest
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
       - run: npx panva/npm-install-retry
-      - run: npm run test
+      - name: npm run test (jose@2)
+        run: npm run test
+      - run: npm install jose@1
+      - name: npm run test (jose@1)
+        run: npm run test
 
   test-electron:
     runs-on: ${{ matrix.os }}
@@ -55,10 +58,15 @@ jobs:
           - 6
           - 7.0.0
           - 7
+          - 8.0.0
+          - 8
+          - 9.0.0
+          - 9
+          - 10.0.0
+          - 10
         os:
           - ubuntu-latest
           - windows-latest
-          - macOS-latest
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v1
