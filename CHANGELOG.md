@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/panva/jose-chacha/compare/v1.1.0...v1.2.0) (2020-09-10)
+
+
+### Features
+
+* jose@2 compatibility ([56f598c](https://github.com/panva/jose-chacha/commit/56f598ccb363d62e979819465ed3ef4249921680))
+
 ## [1.1.0](https://github.com/panva/jose-chacha/compare/v1.0.0...v1.1.0) (2020-09-01)
 
 
