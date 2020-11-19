@@ -1,6 +1,6 @@
 # jose-chacha
 
-This is a plugin for the [`jose`][jose] package that implements the following Individual Draft
+This is a plugin for the [`jose`][jose] (v2.x) package that implements the following Individual Draft
 
 > ChaCha derived AEAD algorithms in JSON Object Signing and Encryption (JOSE)  
 > source: https://tools.ietf.org/html/draft-amringer-jose-chacha-01
