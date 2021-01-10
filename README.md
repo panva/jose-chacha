@@ -1,3 +1,7 @@
+# Deprecated!
+
+This module is not maintained anymore. If and when the new algorithms get registered and support for the encryption comes to openssl and node, it'll be added directly to the `jose` package.
+
 # jose-chacha
 
 This is a plugin for the [`jose`][jose] (v2.x) package that implements the following Individual Draft
